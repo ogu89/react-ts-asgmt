@@ -1,17 +1,48 @@
 import { useMultistepForm } from "./useMultistepForm";
 import "./App.css";
+import { StepOne } from "./StepOne";
+import { StepTwo } from "./StepTwo";
+import { StepThree } from "./StepTree";
+import { StepFour } from "./StepFour";
+import { FormEvent, useState } from "react";
+
+type FormData = {
+  meal: string;
+  numberOfPeople: number;
+  restaurant: string;
+  dish: string;
+  numberOfServings: number;
+};
+
+const INITIAL_DATA = {
+  meal: "",
+  numberOfPeople: 0,
+  restaurant: "",
+  dish: "",
+  numberOfServings: 0,
+};
 
 function App() {
-  const { steps, currentStepIndex, step, isFirstStep, isLastStep,   back, next } = useMultistepForm([
-    <div>One</div>,
-    <div>Two</div>,
-    <div>Three</div>,
-    <div>Four</div>,
-  ]);
+  const [data, setData] = useState(INITIAL_DATA)
+  function updateFields(fields: Partial<FormData>){
+    setData(prev => {
+      return {...prev, ...fields}
+    })
+  }
+
+
+  const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
+    useMultistepForm([<StepOne {...data} updateField={updateFields}  />, <StepTwo {...data} updateField={updateFields} />, <StepThree {...data} updateField={updateFields} />, <StepFour {...data} updateField={updateFields} />]);
+
+  function onSubmit(e: FormEvent) {
+    e.preventDefault();
+    next();
+    console.log("Next");
+  }
 
   return (
     <div
-      style={{ 
+      style={{
         position: "relative",
         background: "white",
         border: "1px solid black",
@@ -24,7 +55,7 @@ function App() {
       {/* <h1 className="text-3xl font-bold underline text-red-600">
       Simple React Typescript Tailwind Sample
     </h1> */}
-      <form>
+      <form onSubmit={onSubmit}>
         <div
           style={{
             position: "absolute",
@@ -43,10 +74,12 @@ function App() {
             justifyContent: "flex-end",
           }}
         >
-          {!isFirstStep && <button type="button" onClick={back}>Back</button>}
-          <button type="button" onClick={next}>
-            {isLastStep ? "Finish" : "Next"}
-          </button>
+          {!isFirstStep && (
+            <button type="button" onClick={back}>
+              Previous
+            </button>
+          )}
+          <button type="submit">{isLastStep ? "Submit" : "Next"}</button>
         </div>
       </form>
     </div>

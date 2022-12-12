@@ -1,5 +1,6 @@
 
 import dishesData  from "./dishes.json"
+import { FormWrapper } from "./FormWrapper";
 
 
 interface Dish {
@@ -15,7 +16,7 @@ export function StepThree() {
 
     console.log(dishes);
     return (
-        <>
+        <FormWrapper title="Meal Deatails">
             <div>
                 <label>Please Select a Dish</label>
                 <select >
@@ -27,6 +28,6 @@ export function StepThree() {
                 <input required min={1} type="number" />
                 <button>Add</button>
             </div>
-        </>
+        </FormWrapper>
     )
 } 
