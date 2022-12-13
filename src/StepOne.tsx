@@ -16,13 +16,13 @@ export function StepOne({meal, numberOfPeople, updateFields}: StepOneProps) {
     return (
         <FormWrapper title="Food Feeling">
             <label>Please Select a meal</label>
-            <select defaultValue={meal} value={meal}>
+            <select value={meal} onChange={e => updateFields({meal: e.target.value}) }>
                 <option value="breakfast">breakfast</option>
                 <option value="lunch">lunch</option>
                 <option value="dinner">dinner</option>
             </select>
             <label>Please Enter Number of People</label>
-            <input required type="number" id="people" name="people" value={numberOfPeople} min="1" max="10" />
+            <input required type="number" id="people" name="people" value={numberOfPeople} onChange={e => updateFields({numberOfPeople: Number(e.target.value)}) } min="1" max="10" />
         </FormWrapper>
     )
 } 

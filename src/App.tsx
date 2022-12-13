@@ -32,12 +32,13 @@ function App() {
 
 
   const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
-    useMultistepForm([<StepOne {...data} updateField={updateFields}  />, <StepTwo {...data} updateField={updateFields} />, <StepThree {...data} updateField={updateFields} />, <StepFour {...data} updateField={updateFields} />]);
+    useMultistepForm([<StepOne {...data} updateFields={updateFields}  />, <StepTwo {...data} updateFields={updateFields} />, <StepThree {...data} updateFields={updateFields} />, <StepFour {...data}  />]);
 
   function onSubmit(e: FormEvent) {
     e.preventDefault();
-    next();
-    console.log("Next");
+    if(!isLastStep) return next();
+    // console.log(updateFields);
+    alert("Successfule Order complimention")
   }
 
   return (

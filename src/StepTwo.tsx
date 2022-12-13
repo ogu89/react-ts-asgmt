@@ -9,19 +9,27 @@ interface Dish {
     availableMeals: string[],
 }
 
+type StepTwoData = {
+    restaurant: string  
+}
+
+type StepTwoDataProps =  StepTwoData & {
+    updateFields: (fields: Partial<StepTwoData>) => void  
+} 
 
 
-export function StepTwo() {
+
+export function StepTwo({restaurant, updateFields}: StepTwoDataProps) {
 
     const dishes: Dish[] = dishesData["dishes"];
-    console.log(dishes)
+    // console.log(dishes)
     return (
         <FormWrapper title="Restaurant Info">
             <label>Please Select a Reastaurant</label>
-            <select >
-                <option value="breakfast">breakfast</option>
-                <option value="lunch">lunch</option>
-                <option value="dinner">dinner</option>
+            <select value={restaurant} onChange={e => updateFields({restaurant: e.target.value}) }>
+                <option value="Otoya">Otoya</option>
+                <option value="Maccas">Maccas</option>
+                <option value="KFC">KFC</option>
             </select>
         </FormWrapper>
     )
