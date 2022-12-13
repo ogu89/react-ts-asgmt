@@ -6,6 +6,7 @@ import { StepThree } from "./steps/StepTree";
 import { StepFour } from "./steps/StepFour";
 import { FormEvent, useState } from "react";
 
+
 type FormData = {
   meal: string;
   numberOfPeople: number;
