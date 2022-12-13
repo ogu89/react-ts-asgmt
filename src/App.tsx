@@ -1,9 +1,9 @@
 import { useMultistepForm } from "./useMultistepForm";
 import "./App.css";
-import { StepOne } from "./StepOne";
-import { StepTwo } from "./StepTwo";
-import { StepThree } from "./StepTree";
-import { StepFour } from "./StepFour";
+import { StepOne } from "./steps/StepOne";
+import { StepTwo } from "./steps/StepTwo";
+import { StepThree } from "./steps/StepTree";
+import { StepFour } from "./steps/StepFour";
 import { FormEvent, useState } from "react";
 
 type FormData = {

@@ -1,5 +1,5 @@
-import dishesData  from "./dishes.json"
-import { FormWrapper } from "./FormWrapper";
+import dishesData  from "../dishes.json"
+import { FormWrapper } from "../FormWrapper";
 
 
 interface Dish {
