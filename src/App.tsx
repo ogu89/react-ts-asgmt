@@ -13,23 +13,38 @@ type FormData = {
   restaurant: string;
   dish: string;
   numberOfServings: number;
+  cart: CartItemData[];
 };
+
+type CartItemData = {
+  dish: string;
+  count: number
+}
 
 const INITIAL_DATA = {
   meal: "",
-  numberOfPeople: 0,
+  numberOfPeople: 1,
   restaurant: "",
   dish: "",
-  numberOfServings: 0,
+  numberOfServings: 1,
 };
 
 function App() {
   const [data, setData] = useState(INITIAL_DATA)
+
   function updateFields(fields: Partial<FormData>){
     setData(prev => {
       return {...prev, ...fields}
     })
   }
+
+  // function updateCart(item: CartItemData){
+  //   setData(prev => {
+  //     return {...prev, }
+  //   })
+  // }
+
+
 
 
   const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
