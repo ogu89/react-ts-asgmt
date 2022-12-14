@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { useEffect, useState } from "react";
 import dishesData from "../dishes.json";
 import { FormWrapper } from "../FormWrapper";
 
@@ -10,12 +10,13 @@ interface Dish {
 }
 
 type StepThreeData = {
-  // dish: string
-  // numberOfServings: number
-  // cart: CartItemData[]
   meal: string;
   restaurant: string;
   numberOfPeople: number;
+  //   could't figure out cart data type
+  //   cart: {dish: string, count: number}
+  [key: string]: any;
+  
 };
 
 type StepThreeDataProps = StepThreeData & {
@@ -28,6 +29,7 @@ type CartItemData = {
 };
 
 export function StepThree({
+  cart,
   meal,
   restaurant,
   numberOfPeople,
@@ -45,9 +47,13 @@ export function StepThree({
 
   const [dish, setDish] = useState<string>("");
   const [count, setCount] = useState<number>(1);
-  const [tempCart, setTempCart] = useState<CartItemData[]>([]);
+  const [tempCart, setTempCart] = useState<CartItemData[]>(cart);
   const [error, setError] = useState<string>("");
   const disabledButton = dish === "";
+
+  useEffect(() => {
+    updateFields({ cart: tempCart });
+  }, [tempCart]);
 
   function addOrder() {
     if (tempCart.find((x) => x.dish === dish))
@@ -114,20 +120,20 @@ export function StepThree({
         Add
       </button>
       <div>
-      {tempCart.map((item) => (
-        <div key={item.dish}>
-          {`${item.dish} - ${item.count}`}
-          <button
-            type="button"
-            onClick={() => {
-              deleteItem(item.dish);
-            }}
-            className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-          >
-            Delete
-          </button>
-        </div>
-      ))}
+        {tempCart.map((item) => (
+          <div key={item.dish}>
+            {`${item.dish} - ${item.count}`}
+            <button
+              type="button"
+              onClick={() => {
+                deleteItem(item.dish);
+              }}
+              className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+            >
+              Delete
+            </button>
+          </div>
+        ))}
       </div>
     </FormWrapper>
   );
