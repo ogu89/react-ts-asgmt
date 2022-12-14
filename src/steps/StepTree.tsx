@@ -12,11 +12,9 @@ interface Dish {
 type StepThreeData = {
   meal: string;
   restaurant: string;
-  numberOfPeople: number;
-  //   could't figure out cart data type
-  //   cart: {dish: string, count: number}
-  [key: string]: any;
-  
+  //Could't figure out cart data type
+  //cart: {dish: string, count: number}
+  cart: any;
 };
 
 type StepThreeDataProps = StepThreeData & {
@@ -32,7 +30,6 @@ export function StepThree({
   cart,
   meal,
   restaurant,
-  numberOfPeople,
   updateFields,
 }: StepThreeDataProps) {
   const dishes: Dish[] = dishesData["dishes"];

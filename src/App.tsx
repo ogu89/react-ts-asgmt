@@ -24,13 +24,28 @@ const INITIAL_DATA = {
   meal: "",
   numberOfPeople: 1,
   restaurant: "",
-  dish: "",
-  numberOfServings: 1,
   cart: [],
 };
 
 function App() {
   const [data, setData] = useState(INITIAL_DATA);
+  // const [error, setError] = useState<string>("");
+  // const isInvalid = ():boolean => {
+
+  //   if(isStepThree && data.cart.length === 0){
+  //     setError("Add item into cart")
+  //     return true;
+  //   }
+  //   return false
+  // }
+
+  // const totalDishes = (): number => {
+  //   return 0
+  // }
+
+  // const totalDishesresult = data.cart.reduce((accumulator, obj) => {
+  //   return accumulator + obj.count;
+  // }, 0);
 
   function updateFields(fields: Partial<FormData>) {
     setData((prev) => {
@@ -38,18 +53,29 @@ function App() {
     });
   }
 
-  const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
-    useMultistepForm([
-      <StepOne {...data} updateFields={updateFields} />,
-      <StepTwo {...data} updateFields={updateFields} />,
-      <StepThree {...data} updateFields={updateFields} />,
-      <StepFour {...data} />,
-    ]);
+  const {
+    steps,
+    currentStepIndex,
+    step,
+    isFirstStep,
+    isStepThree,
+    isLastStep,
+    back,
+    next,
+  } = useMultistepForm([
+    <StepOne {...data} updateFields={updateFields} />,
+    <StepTwo {...data} updateFields={updateFields} />,
+    <StepThree {...data} updateFields={updateFields} />,
+    <StepFour {...data} />,
+  ]);
+
+  const isInvalid = isStepThree && data.cart.length === 0;
 
   function onSubmit(e: FormEvent) {
     e.preventDefault();
+    // if(isInvalid)
     if (!isLastStep) return next();
-    // console.log(updateFields);
+    console.log(data);
     alert("Successfule Order complimention");
   }
 
@@ -76,6 +102,14 @@ function App() {
           {currentStepIndex + 1} / {steps.length}
         </div>
         {step}
+        {isInvalid && (
+          <div
+            className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800 font-medium"
+            role="alert"
+          >
+            Add a Item into cart
+          </div>
+        )}
         <div
           style={{
             marginTop: "1rem",
@@ -95,6 +129,7 @@ function App() {
           )}
           <button
             type="submit"
+            disabled={isInvalid}
             className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             {isLastStep ? "Submit" : "Next"}

@@ -12,7 +12,7 @@ type StepTwoData = {
   meal: string;
   restaurant: string;
   // could't figure out cart data type
-  [key: string]: any;
+  cart: any;
 };
 
 type StepTwoDataProps = StepTwoData & {
