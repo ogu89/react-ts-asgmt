@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import dishesData  from "../dishes.json"
 import { FormWrapper } from "../FormWrapper";
 
@@ -42,16 +42,12 @@ export function StepThree({ meal, restaurant, numberOfPeople, updateFields}: Ste
     )
 
     const [dish, setDish] = useState<string>("")
-    const [count, setCount] = useState<number>(0)
+    const [count, setCount] = useState<number>(1)
     const [tempCart, setTempCart] = useState<CartItemData[]>([])
 
-    // function updateCart(){
-    //     setData(prev => {
-    //       return {...prev, ...fields}
-    //     })
-    //   }
+    const disabledButton = dish === "";
 
-    function addOrder(){
+    function addOrder(e:FormEvent){
         setTempCart(current => [...current, {dish: dish, count: count}])
 
     }
@@ -64,21 +60,24 @@ export function StepThree({ meal, restaurant, numberOfPeople, updateFields}: Ste
     };
 
 
+
+
     console.log(dishOptions);
     return (
         <FormWrapper title="Meal Deatails">
                 <label>Please Select a Dish</label>
-                <select value={dish} onChange={e => setDish(e.target.value)} >
+                <select value={dish} onChange={e => setDish(e.target.value)} required>
+                    <option value="" disabled >---</option>
                     {dishOptions.map(e => (
                         <option key={e.id} value={e.name}>{e.name}</option>
                     ))}
                 </select>
                 <label>Please enter no. of servings</label>
-                <input value={count} onChange={e => setCount(Number(e.target.value)) } required min={1} type="number" />
-                <button type="button" onClick={addOrder}>Add</button>
+                <input type="number" value={count} onChange={e => setCount(Number(e.target.value)) } min={1}  required/>
+                <button disabled={disabledButton} type="button" onClick={addOrder} className={`text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 ${disabledButton ? "cursor-not-allowed" : ""}`} >Add</button>
                 <div>
                     {tempCart.map((item) => (
-                        <div>
+                        <div key={item.dish}>
                             {`${item.dish} - ${item.count}`}
                             <button type="button" onClick={() => {deleteItem(item.dish)}}>Deltee</button>
                         </div>
