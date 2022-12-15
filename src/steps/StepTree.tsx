@@ -70,7 +70,6 @@ export function StepThree({
           value={dish}
           onChange={(e) => setDish(e.target.value)}
           className="input"
-          required
         >
           <option value="" disabled>
             ---
@@ -95,7 +94,6 @@ export function StepThree({
           onChange={(e) => setCount(Number(e.target.value))}
           min={1}
           className="input"
-          required
         />
       </div>
       <div className="flex justify-start">

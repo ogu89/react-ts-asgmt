@@ -5,3 +5,8 @@ export interface Dish {
     availableMeals: string[];
 }
   
+
+export type CartItemData = {
+    dish: string;
+    count: number;
+  };

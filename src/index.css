@@ -41,3 +41,15 @@ code {
   @apply text-white bg-green-600 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800;
 }
 
+.review-text{
+  @apply text-xl font-bold dark:text-white;
+}
+
+.review-item{
+  @apply flex justify-between my-10;
+}
+
+.review-title{
+  @apply text-4xl font-extrabold dark:text-white;
+}
+
