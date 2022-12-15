@@ -1,13 +1,6 @@
 import { useEffect, useState } from "react";
-import dishesData from "../data/dishes.json";
 import { FormWrapper } from "../FormWrapper";
-
-interface Dish {
-  id: number;
-  name: string;
-  restaurant: string;
-  availableMeals: string[];
-}
+import {Dish} from "../types";
 
 type StepThreeData = {
   meal: string;
@@ -19,6 +12,7 @@ type StepThreeData = {
 
 type StepThreeDataProps = StepThreeData & {
   updateFields: (fields: Partial<StepThreeData>) => void;
+  dishesData: Dish[];
 };
 
 type CartItemData = {
@@ -31,9 +25,9 @@ export function StepThree({
   meal,
   restaurant,
   updateFields,
+  dishesData,
 }: StepThreeDataProps) {
-  const dishes: Dish[] = dishesData["dishes"];
-  const filteredDishes: Dish[] = dishes.filter(
+  const filteredDishes: Dish[] = dishesData.filter(
     (dish) =>
       dish.availableMeals.includes(meal) && dish.restaurant === restaurant
   );

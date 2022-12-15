@@ -5,6 +5,8 @@ import { StepTwo } from "./steps/StepTwo";
 import { StepThree } from "./steps/StepTree";
 import { StepFour } from "./steps/StepFour";
 import { FormEvent, useState } from "react";
+import dishesData from "./data/dishes.json";
+
 
 type FormData = {
   meal: string;
@@ -64,8 +66,8 @@ function App() {
     next,
   } = useMultistepForm([
     <StepOne {...data} updateFields={updateFields} />,
-    <StepTwo {...data} updateFields={updateFields} />,
-    <StepThree {...data} updateFields={updateFields} />,
+    <StepTwo {...data} updateFields={updateFields} dishesData={dishesData["dishes"]}/>,
+    <StepThree {...data} updateFields={updateFields} dishesData={dishesData["dishes"]}/>,
     <StepFour {...data} />,
   ]);
 

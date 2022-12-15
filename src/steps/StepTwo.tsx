@@ -1,12 +1,5 @@
-import dishesData from "../data/dishes.json";
 import { FormWrapper } from "../FormWrapper";
-
-interface Dish {
-  id: number;
-  name: string;
-  restaurant: string;
-  availableMeals: string[];
-}
+import {Dish} from "../types";
 
 type StepTwoData = {
   meal: string;
@@ -15,8 +8,9 @@ type StepTwoData = {
   cart: any;
 };
 
-type StepTwoDataProps = StepTwoData & {
+type StepTwoDataProps = StepTwoData &  {
   updateFields: (fields: Partial<StepTwoData>) => void;
+  dishesData: Dish[]
 };
 
 export function StepTwo({
@@ -24,9 +18,9 @@ export function StepTwo({
   restaurant,
   cart,
   updateFields,
+  dishesData,
 }: StepTwoDataProps) {
-  const dishes: Dish[] = dishesData["dishes"];
-  const restaurants: Dish[] = dishes.filter((dish) =>
+  const restaurants: Dish[] = dishesData.filter((dish) =>
     dish.availableMeals.includes(meal)
   );
 
