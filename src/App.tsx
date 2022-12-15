@@ -24,7 +24,7 @@ const INITIAL_DATA = {
   meal: "",
   numberOfPeople: 1,
   restaurant: "",
-  cart: [],
+  cart: [{dish: "", count: 0}],
 };
 
 function App() {
@@ -43,9 +43,9 @@ function App() {
   //   return 0
   // }
 
-  // const totalDishesresult = data.cart.reduce((accumulator, obj) => {
-  //   return accumulator + obj.count;
-  // }, 0);
+  const totalDishesresult = data.cart.reduce((accumulator, obj) => {
+    return accumulator + obj.count;
+  }, 0);
 
   function updateFields(fields: Partial<FormData>) {
     setData((prev) => {
@@ -70,6 +70,7 @@ function App() {
   ]);
 
   const isInvalid = isStepThree && data.cart.length === 0;
+  const isNotEnough = isStepThree && data.numberOfPeople > totalDishesresult;
 
   function onSubmit(e: FormEvent) {
     e.preventDefault();
@@ -110,6 +111,15 @@ function App() {
             Add a Item into cart
           </div>
         )}
+        {isNotEnough && (
+          <div
+          className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800 font-medium"
+          role="alert"
+        >
+          The total number of dishes should be greater or equal to the number of people
+        </div>
+        )}
+
         <div
           style={{
             marginTop: "1rem",
