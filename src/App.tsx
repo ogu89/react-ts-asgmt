@@ -6,6 +6,7 @@ import { StepThree } from "./steps/StepTree";
 import { StepFour } from "./steps/StepFour";
 import { FormEvent, useState } from "react";
 import dishesData from "./data/dishes.json";
+import {ProgressBar} from "./components/ProgressBar";
 
 
 type FormData = {
@@ -17,7 +18,10 @@ type FormData = {
   cart: any;
 };
 
-// interface CartItemData  {
+
+
+
+// interface CartItemData2  {
 //   dish: string;
 //   count: number
 // }
@@ -104,6 +108,7 @@ function App() {
         >
           {currentStepIndex + 1} / {steps.length}
         </div>
+        <ProgressBar  currentStep={currentStepIndex}/>
         {step}
         {isInvalid && (
           <div

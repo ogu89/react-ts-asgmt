@@ -6,7 +6,7 @@ type StepThreeData = {
   meal: string;
   restaurant: string;
   //Could't figure out cart data type
-  //cart: {dish: string, count: number}
+  // cart: {dish: string, count: number}
   cart: any;
 };
 
