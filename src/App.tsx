@@ -1,4 +1,3 @@
-import "./App.css";
 import { FormEvent, useState } from "react";
 import { useMultistepForm } from "./useMultistepForm";
 import { StepOne } from "./steps/StepOne";
@@ -52,7 +51,7 @@ function App() {
   }
 
   const {
-    steps,
+    // steps,
     currentStepIndex,
     step,
     isFirstStep,
