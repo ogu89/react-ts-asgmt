@@ -1,10 +1,10 @@
 import { FormWrapper } from "../components/FormWrapper";
+import { CartItemData } from "../types";
 
 type StepOneData = {
   meal: string;
   numberOfPeople: number;
-  // could't figure out cart data type
-  [key: string]: any;
+  cart: CartItemData[];
 };
 
 type StepOneProps = StepOneData & {

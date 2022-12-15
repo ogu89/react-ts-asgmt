@@ -1,26 +1,20 @@
-import { useMultistepForm } from "./useMultistepForm";
 import "./App.css";
+import { FormEvent, useState } from "react";
+import { useMultistepForm } from "./useMultistepForm";
 import { StepOne } from "./steps/StepOne";
 import { StepTwo } from "./steps/StepTwo";
 import { StepThree } from "./steps/StepTree";
 import { StepFour } from "./steps/StepFour";
-import { FormEvent, useState } from "react";
-import dishesData from "./data/dishes.json";
 import { ProgressBar } from "./components/ProgressBar";
+import dishesData from "./data/dishes.json";
+import { CartItemData } from "./types";
 
 type FormData = {
   meal: string;
   numberOfPeople: number;
   restaurant: string;
-  // cart: CartItemData;
-  //could't figure out cart data type
-  cart: any;
+  cart: CartItemData[];
 };
-
-// interface CartItemData2  {
-//   dish: string;
-//   count: number
-// }
 
 const INITIAL_DATA = {
   meal: "",
@@ -91,17 +85,6 @@ function App() {
   }
 
   return (
-    // <div
-    //   style={{
-    //     position: "relative",
-    //     background: "white",
-    //     border: "1px solid black",
-    //     padding: "2rem",
-    //     margin: "1rem",
-    //     borderRadius: ".5rem",
-    //     fontFamily: "Arial",
-    //   }}
-    // >
     <div className="w-full p-5  bg-white border border-gray-200 rounded-lg shadow-md  md:p-20 dark:bg-gray-800 dark:border-gray-700">
       <form onSubmit={onSubmit}>
         <div

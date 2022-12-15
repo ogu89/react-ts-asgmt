@@ -1,23 +1,17 @@
 import { useEffect, useState } from "react";
 import { FormWrapper } from "../components/FormWrapper";
 import { Dish } from "../types";
+import { CartItemData } from "../types";
 
 type StepThreeData = {
   meal: string;
   restaurant: string;
-  //Could't figure out cart data type
-  // cart: {dish: string, count: number}
-  cart: any;
+  cart: CartItemData[];
 };
 
 type StepThreeDataProps = StepThreeData & {
   updateFields: (fields: Partial<StepThreeData>) => void;
   dishesData: Dish[];
-};
-
-type CartItemData = {
-  dish: string;
-  count: number;
 };
 
 export function StepThree({
