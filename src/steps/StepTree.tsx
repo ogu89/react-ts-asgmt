@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FormWrapper } from "../FormWrapper";
+import { FormWrapper } from "../components/FormWrapper";
 import {Dish} from "../types";
 
 type StepThreeData = {
