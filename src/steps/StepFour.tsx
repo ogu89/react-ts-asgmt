@@ -8,11 +8,6 @@ type StepFourDataProps = {
   cart: CartItemData[];
 };
 
-// type CartItemData = {
-//     dish: string;
-//     count: number;
-//   };
-
 export function StepFour({
   meal,
   numberOfPeople,
@@ -55,7 +50,6 @@ export function StepFour({
           </div>
         </div>
       </div>
-      {/* <h2>cart: {cart}</h2> */}
     </FormWrapper>
   );
 }
