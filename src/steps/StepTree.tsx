@@ -35,14 +35,21 @@ export function StepThree({
   const [tempCart, setTempCart] = useState<CartItemData[]>(cart);
   const [error, setError] = useState<string>("");
   const disabledButton = dish === "";
+  const totalDishesresult = tempCart.reduce((accumulator, obj) => {
+    return accumulator + obj.count;
+  }, 0);
 
   useEffect(() => {
     updateFields({ cart: tempCart });
+    console.log("chanegd")
   }, [tempCart]);
 
   function addOrder() {
     if (tempCart.find((x) => x.dish === dish))
       setError("You can't add same dish");
+    else if (count < 1) setError("At lease 1 dish");
+    else if (totalDishesresult + count > 10)
+      setError("The total number of dishes is max 10");
     else {
       setTempCart((current) => [...current, { dish: dish, count: count }]);
       setError("");
@@ -87,6 +94,7 @@ export function StepThree({
           value={count}
           onChange={(e) => setCount(Number(e.target.value))}
           min={1}
+          max={10}
           className="input"
         />
       </div>
@@ -101,21 +109,21 @@ export function StepThree({
             Add
           </button>
         </div>
-      <div>
-        {tempCart.map((item) => (
-          <div key={item.dish}>
-            <h5 className="review-text">{`${item.dish} - ${item.count}`}</h5>
-            <button
-              type="button"
-              onClick={() => {
-                deleteItem(item.dish);
-              }}
-              className="delelte-button"
-            >
-              Delete
-            </button>
-          </div>
-        ))}
+        <div>
+          {tempCart.map((item) => (
+            <div key={item.dish}>
+              <h5 className="review-text">{`${item.dish} - ${item.count}`}</h5>
+              <button
+                type="button"
+                onClick={() => {
+                  deleteItem(item.dish);
+                }}
+                className="delelte-button"
+              >
+                Delete
+              </button>
+            </div>
+          ))}
         </div>
       </div>
     </FormWrapper>

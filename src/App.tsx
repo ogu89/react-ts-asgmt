@@ -8,6 +8,8 @@ import { StepFour } from "./steps/StepFour";
 import { ProgressBar } from "./components/ProgressBar";
 import dishesData from "./data/dishes.json";
 import { CartItemData } from "./types";
+import { Alert } from "./components/Alert";
+import { PreviousNextButton } from "./components/PreviousNextButton";
 
 type FormData = {
   meal: string;
@@ -76,63 +78,40 @@ function App() {
   const isInvalid = isStepThree && data.cart.length === 0;
   const isNotEnough = isStepThree && data.numberOfPeople > totalDishesresult;
 
+
   function onSubmit(e: FormEvent) {
     e.preventDefault();
-    // if(isInvalid)
+    // if(isInvalid || isNotEnough){
+
+    // }
     if (!isLastStep) return next();
     console.log(data);
-    alert("Successfule Order complimention");
+    alert("Order Successful");
   }
 
+  // function displayAlert(){
+  //   return
+  //   (
+  //   <>
+
+  //   </>
+
+  //   )
+  // }
+
   return (
-    <div className="w-full p-5  bg-white border border-gray-200 rounded-lg shadow-md  md:p-20 dark:bg-gray-800 dark:border-gray-700">
+    <div className="card">
       <form onSubmit={onSubmit}>
-        <div
-          style={{
-            position: "absolute",
-            top: ".5rem",
-            right: ".5rem",
-          }}
-        >
-          {currentStepIndex + 1} / {steps.length}
-        </div>
         <ProgressBar currentStep={currentStepIndex} />
         {step}
-        {isInvalid && (
-          <div
-            className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800 font-medium"
-            role="alert"
-          >
-            Add a Item into cart
-          </div>
-        )}
+        {isInvalid && <Alert alertText="Add a Item into cart" />}
         {isNotEnough && (
-          <div
-            className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800 font-medium"
-            role="alert"
-          >
-            The total number of dishes should be greater or equal to the number
-            of people
-          </div>
+          <Alert
+            alertText="The total number of dishes should be greater or equal to the number
+            of people"
+          />
         )}
-
-        <div
-          style={{
-            marginTop: "1rem",
-            display: "flex",
-            gap: ".5rem",
-            justifyContent: "flex-end",
-          }}
-        >
-          {!isFirstStep && (
-            <button type="button" onClick={back} className="previous-button">
-              Previous
-            </button>
-          )}
-          <button type="submit" disabled={isInvalid} className="next-button">
-            {isLastStep ? "Submit" : "Next"}
-          </button>
-        </div>
+        <PreviousNextButton isFirstStep={isFirstStep} isLastStep={isLastStep} isInvalid={isInvalid} isNotEnough={isNotEnough} back={back} />
       </form>
     </div>
   );

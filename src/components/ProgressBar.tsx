@@ -1,4 +1,4 @@
-import "./progressBar.css";
+import "../styles/progressBar.css";
 import { TiTick } from "react-icons/ti";
 
 type Props = {

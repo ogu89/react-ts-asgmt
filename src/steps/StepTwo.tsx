@@ -34,12 +34,9 @@ export function StepTwo({
   //         t.restaurant === value.restaurant && t.restaurant
   //     ))
   // )
-
   // const prods = products.filter((value, index, array) => index == array.findIndex(item => item.id == value.id));
-
   // const unique = [...new Map(restaurants.map(itme => [item["restaurant"], item])).values()]
   // const unique = [...new Map(arr.map(item => [item[key], item])).values()]
-
   // function getUniqueListBy(arr, key) {
   //     return [...new Map(arr.map(item => [item[key], item])).values()]
   // }
