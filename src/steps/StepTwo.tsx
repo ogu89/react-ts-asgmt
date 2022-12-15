@@ -53,7 +53,7 @@ export function StepTwo({
   //   )
 
   return (
-    <FormWrapper title="Restaurant Info">
+    <FormWrapper>
       <div className="form-item">
         <label className="label">Please Select a Reastaurant</label>
         <select

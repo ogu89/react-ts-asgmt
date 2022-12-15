@@ -57,7 +57,7 @@ export function StepThree({
     );
   }
   return (
-    <FormWrapper title="Meal Deatails">
+    <FormWrapper>
       <div className="form-item">
         <label className="label">Please Select a Dish</label>
         <select

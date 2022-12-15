@@ -16,7 +16,7 @@ export function StepFour({
 }: StepFourDataProps) {
   console.log(cart);
   return (
-    <FormWrapper title="Review">
+    <FormWrapper>
       <div>
         <h2 className="review-title">
           Order confirmation

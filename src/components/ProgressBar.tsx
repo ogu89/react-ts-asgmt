@@ -1,7 +1,11 @@
 import "./progressBar.css";
 import { TiTick } from "react-icons/ti";
 
-export function ProgressBar({ currentStep }: any) {
+type Props = {
+  currentStep: number
+};
+
+export function ProgressBar({ currentStep }: Props) {
   const steps = ["Step 1", "Step 2", "Step 3", "Review"];
   return (
     <>

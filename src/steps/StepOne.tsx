@@ -15,7 +15,7 @@ export function StepOne({ meal, numberOfPeople, updateFields }: StepOneProps) {
   // updateFields({ })
 
   return (
-    <FormWrapper title="Food Feeling">
+    <FormWrapper>
       <div className="form-item">
         <label className="label">Please Select a meal</label>
         <select
