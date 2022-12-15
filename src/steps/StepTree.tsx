@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FormWrapper } from "../components/FormWrapper";
-import {Dish} from "../types";
+import { Dish } from "../types";
 
 type StepThreeData = {
   meal: string;
@@ -64,14 +64,12 @@ export function StepThree({
   }
   return (
     <FormWrapper title="Meal Deatails">
-      <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-        Please Select a Dish
-      </label>
-      <div>
+      <div className="form-item">
+        <label className="label">Please Select a Dish</label>
         <select
           value={dish}
           onChange={(e) => setDish(e.target.value)}
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="input"
           required
         >
           <option value="" disabled>
@@ -89,27 +87,29 @@ export function StepThree({
           </p>
         )}
       </div>
-      <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-        Please enter no. of servings
-      </label>
-      <input
-        type="number"
-        value={count}
-        onChange={(e) => setCount(Number(e.target.value))}
-        min={1}
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        required
-      />
-      <button
-        disabled={disabledButton}
-        type="button"
-        onClick={addOrder}
-        className={`text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 ${
-          disabledButton ? "cursor-not-allowed" : ""
-        }`}
-      >
-        Add
-      </button>
+      <div className="form-item">
+        <label className="label">Please enter no. of servings</label>
+        <input
+          type="number"
+          value={count}
+          onChange={(e) => setCount(Number(e.target.value))}
+          min={1}
+          className="input"
+          required
+        />
+      </div>
+      <div className="flex justify-start">
+        <button
+          disabled={disabledButton}
+          type="button"
+          onClick={addOrder}
+          className={`text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 ${
+            disabledButton ? "cursor-not-allowed" : ""
+          }`}
+        >
+          Add
+        </button>
+      </div>
       <div>
         {tempCart.map((item) => (
           <div key={item.dish}>

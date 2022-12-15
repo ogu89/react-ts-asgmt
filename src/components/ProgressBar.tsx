@@ -10,7 +10,7 @@ export function ProgressBar({currentStep}:any){
   const steps = ["Step 1", "Step 2", "Step 3", "Review"];
   return (
     <>
-      <div className="flex justify-between">
+      <div className="flex justify-center">
         {steps?.map((step, i) => (
             <div key={i} className={`step-item ${currentStep +1 === i + 1 && "active"} ${(i + 1 < currentStep + 1 ) && "complete"} `} >
                 <div className="step">{i + 1 < currentStep +1  ? <TiTick size={24} /> : i + 1}</div>

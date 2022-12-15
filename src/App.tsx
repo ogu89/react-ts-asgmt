@@ -6,8 +6,7 @@ import { StepThree } from "./steps/StepTree";
 import { StepFour } from "./steps/StepFour";
 import { FormEvent, useState } from "react";
 import dishesData from "./data/dishes.json";
-import {ProgressBar} from "./components/ProgressBar";
-
+import { ProgressBar } from "./components/ProgressBar";
 
 type FormData = {
   meal: string;
@@ -18,9 +17,6 @@ type FormData = {
   cart: any;
 };
 
-
-
-
 // interface CartItemData2  {
 //   dish: string;
 //   count: number
@@ -30,7 +26,7 @@ const INITIAL_DATA = {
   meal: "",
   numberOfPeople: 1,
   restaurant: "",
-  cart: [{dish: "", count: 0}],
+  cart: [{ dish: "", count: 0 }],
 };
 
 function App() {
@@ -70,8 +66,16 @@ function App() {
     next,
   } = useMultistepForm([
     <StepOne {...data} updateFields={updateFields} />,
-    <StepTwo {...data} updateFields={updateFields} dishesData={dishesData["dishes"]}/>,
-    <StepThree {...data} updateFields={updateFields} dishesData={dishesData["dishes"]}/>,
+    <StepTwo
+      {...data}
+      updateFields={updateFields}
+      dishesData={dishesData["dishes"]}
+    />,
+    <StepThree
+      {...data}
+      updateFields={updateFields}
+      dishesData={dishesData["dishes"]}
+    />,
     <StepFour {...data} />,
   ]);
 
@@ -87,17 +91,18 @@ function App() {
   }
 
   return (
-    <div
-      style={{
-        position: "relative",
-        background: "white",
-        border: "1px solid black",
-        padding: "2rem",
-        margin: "1rem",
-        borderRadius: ".5rem",
-        fontFamily: "Arial",
-      }}
-    >
+    // <div
+    //   style={{
+    //     position: "relative",
+    //     background: "white",
+    //     border: "1px solid black",
+    //     padding: "2rem",
+    //     margin: "1rem",
+    //     borderRadius: ".5rem",
+    //     fontFamily: "Arial",
+    //   }}
+    // >
+    <div className="w-full p-5  bg-white border border-gray-200 rounded-lg shadow-md  md:p-20 dark:bg-gray-800 dark:border-gray-700">
       <form onSubmit={onSubmit}>
         <div
           style={{
@@ -108,7 +113,7 @@ function App() {
         >
           {currentStepIndex + 1} / {steps.length}
         </div>
-        <ProgressBar  currentStep={currentStepIndex}/>
+        <ProgressBar currentStep={currentStepIndex} />
         {step}
         {isInvalid && (
           <div
@@ -120,11 +125,12 @@ function App() {
         )}
         {isNotEnough && (
           <div
-          className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800 font-medium"
-          role="alert"
-        >
-          The total number of dishes should be greater or equal to the number of people
-        </div>
+            className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800 font-medium"
+            role="alert"
+          >
+            The total number of dishes should be greater or equal to the number
+            of people
+          </div>
         )}
 
         <div
@@ -136,19 +142,11 @@ function App() {
           }}
         >
           {!isFirstStep && (
-            <button
-              type="button"
-              onClick={back}
-              className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-            >
+            <button type="button" onClick={back} className="previous-button">
               Previous
             </button>
           )}
-          <button
-            type="submit"
-            disabled={isInvalid}
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
+          <button type="submit" disabled={isInvalid} className="next-button">
             {isLastStep ? "Submit" : "Next"}
           </button>
         </div>
