@@ -25,20 +25,8 @@ const INITIAL_DATA = {
 };
 
 function App() {
-  const [data, setData] = useState(INITIAL_DATA);
-  // const [error, setError] = useState<string>("");
-  // const isInvalid = ():boolean => {
-
-  //   if(isStepThree && data.cart.length === 0){
-  //     setError("Add item into cart")
-  //     return true;
-  //   }
-  //   return false
-  // }
-
-  // const totalDishes = (): number => {
-  //   return 0
-  // }
+  const [data, setData] = useState<FormData>(INITIAL_DATA);
+  const [error, setError] = useState<boolean>(false);
 
   const totalDishesresult = data.cart.reduce((accumulator, obj) => {
     return accumulator + obj.count;
@@ -77,40 +65,35 @@ function App() {
   const isInvalid = isStepThree && data.cart.length === 0;
   const isNotEnough = isStepThree && data.numberOfPeople > totalDishesresult;
 
-
   function onSubmit(e: FormEvent) {
     e.preventDefault();
-    // if(isInvalid || isNotEnough){
-
-    // }
-    if (!isLastStep) return next();
-    console.log(data);
-    alert("Order Successful");
+    if (isInvalid || isNotEnough) return setError(true);
+    else if (!isLastStep) {
+      setError(false);
+      return next();
+    } else {
+      console.log(data);
+      alert("Order Successful");
+    }
   }
-
-  // function displayAlert(){
-  //   return
-  //   (
-  //   <>
-
-  //   </>
-
-  //   )
-  // }
-
   return (
     <div className="card">
       <form onSubmit={onSubmit}>
         <ProgressBar currentStep={currentStepIndex} />
         {step}
-        {isInvalid && <Alert alertText="Add a Item into cart" />}
-        {isNotEnough && (
+        {error && <Alert alertText="Add a Item into cart" />}
+        {error && (
           <Alert
             alertText="The total number of dishes should be greater or equal to the number
             of people"
           />
         )}
-        <PreviousNextButton isFirstStep={isFirstStep} isLastStep={isLastStep} isInvalid={isInvalid} isNotEnough={isNotEnough} back={back} />
+        <PreviousNextButton
+          isFirstStep={isFirstStep}
+          isLastStep={isLastStep}
+          setError={setError}
+          back={back}
+        />
       </form>
     </div>
   );

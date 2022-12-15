@@ -14,7 +14,6 @@ export function StepFour({
   restaurant,
   cart,
 }: StepFourDataProps) {
-  console.log(cart);
   return (
     <FormWrapper>
       <div>

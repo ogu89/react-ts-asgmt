@@ -1,11 +1,11 @@
 import { FormWrapper } from "../components/FormWrapper";
 import { Dish } from "../types";
+import { CartItemData } from "../types";
 
 type StepTwoData = {
   meal: string;
   restaurant: string;
-  // could't figure out cart data type
-  cart: any;
+  cart: CartItemData[];
 };
 
 type StepTwoDataProps = StepTwoData & {

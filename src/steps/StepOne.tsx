@@ -12,8 +12,6 @@ type StepOneProps = StepOneData & {
 };
 
 export function StepOne({ meal, numberOfPeople, updateFields }: StepOneProps) {
-  // updateFields({ })
-
   return (
     <FormWrapper>
       <div className="form-item">

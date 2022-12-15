@@ -41,7 +41,7 @@ export function StepThree({
 
   useEffect(() => {
     updateFields({ cart: tempCart });
-    console.log("chanegd")
+    console.log("chanegd");
   }, [tempCart]);
 
   function addOrder() {
