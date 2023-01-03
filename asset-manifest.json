@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/React-Ts-MultistepForm/static/css/main.eb4b64c1.css",
-    "main.js": "/React-Ts-MultistepForm/static/js/main.a4a4ee6f.js",
-    "index.html": "/React-Ts-MultistepForm/index.html",
-    "main.eb4b64c1.css.map": "/React-Ts-MultistepForm/static/css/main.eb4b64c1.css.map",
-    "main.a4a4ee6f.js.map": "/React-Ts-MultistepForm/static/js/main.a4a4ee6f.js.map"
+    "main.css": "/react-ts-asgmt/static/css/main.eb4b64c1.css",
+    "main.js": "/react-ts-asgmt/static/js/main.a4a4ee6f.js",
+    "index.html": "/react-ts-asgmt/index.html",
+    "main.eb4b64c1.css.map": "/react-ts-asgmt/static/css/main.eb4b64c1.css.map",
+    "main.a4a4ee6f.js.map": "/react-ts-asgmt/static/js/main.a4a4ee6f.js.map"
   },
   "entrypoints": [
     "static/css/main.eb4b64c1.css",
